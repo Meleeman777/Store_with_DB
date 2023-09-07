@@ -38,9 +38,9 @@ func main() {
 
 }
 func changeProduct(w http.ResponseWriter, r *http.Request) {
-        if r.Method != "PUT" {
+	if r.Method != "PUT" {
                 http.Error(w, "Method Not Allowed", 405)
-        } else {
+	} else {
 		decoder := json.NewDecoder(r.Body)
 		var g_product Product
 
@@ -49,9 +49,9 @@ func changeProduct(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
-		query := fmt.Sprintf("INSERT INTO products(name, price, description, category) VALUES('%s', %d, '%s', '%s') RETURNING id", g_product.Name, g_product.Price, g_product.Description, g_product.Category)
+		query := fmt.Sprintf("UPDATE products SET (name = $2, price = $3, description = $4, category = $5) WHERE id = $1 RETURNING id")
 
-		fmt.Println("# INSERT QUERY: %s", query)
+		fmt.Println("# UPDATE QUERY: %s", query)
 		rows, err := db.Query(query)
 		if err != nil {
 			panic(err)
