@@ -83,7 +83,6 @@ func addOrder(w http.ResponseWriter, r *http.Request) {
 
 }
 
-
 func getProducts(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method Not Allowed", 405)
