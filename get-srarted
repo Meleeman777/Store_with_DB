@@ -1,0 +1,12 @@
+sudo apt-get install npm
+sudo npm install apidoc -g
+apidoc -i ./ -o doc
+sudo cp -dr assets/ /var/www/apidoc/
+sudo cp -dr index.html /var/www/apidoc/
+change server config
+
+Instruction for BD inside diewxtory
+
+go run api.go
+curl -D - -X GET -s  http://127.0.0.1:7070/v2/products/
+curl -D - -X POST -s http://127.0.0.1:7070/v2/orders/add -d '{"name":"mouse","amount":2,"price":1500}'
